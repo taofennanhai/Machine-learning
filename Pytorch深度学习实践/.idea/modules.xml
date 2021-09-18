@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Pytorch深度学习实践.iml" filepath="$PROJECT_DIR$/.idea/Pytorch深度学习实践.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../机器学习实战/pythonProject/.idea/pythonProject.iml" filepath="$PROJECT_DIR$/../机器学习实战/pythonProject/.idea/pythonProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../机器学习实战/第三章 决策树生成/.idea/第三章 决策树生成.iml" filepath="$PROJECT_DIR$/../机器学习实战/第三章 决策树生成/.idea/第三章 决策树生成.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../机器学习实战/第三章 贝叶斯分类器/.idea/第三章 贝叶斯分类器.iml" filepath="$PROJECT_DIR$/../机器学习实战/第三章 贝叶斯分类器/.idea/第三章 贝叶斯分类器.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../机器学习实战/第二章 K邻近算法/.idea/第二章 K邻近算法.iml" filepath="$PROJECT_DIR$/../机器学习实战/第二章 K邻近算法/.idea/第二章 K邻近算法.iml" />
+    </modules>
+  </component>
+</project>
