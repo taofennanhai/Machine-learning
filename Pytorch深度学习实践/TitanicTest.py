@@ -132,7 +132,7 @@ def save(num, value, filepath):
     dataframe.to_csv(filepath, index=False, sep=',')
 
 
-if __name__ == '__main__':
+
 
     plt.plot(epoch_list, loss_list)
     plt.xlabel('epoch')
