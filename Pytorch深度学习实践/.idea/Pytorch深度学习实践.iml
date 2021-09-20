@@ -11,5 +11,8 @@
     <orderEntry type="module" module-name="贝叶斯分类器" />
     <orderEntry type="module" module-name="pythonProject" />
     <orderEntry type="module" module-name="第三章 贝叶斯分类器" />
+    <orderEntry type="module" module-name="第四章 支持向量机SVM" />
+    <orderEntry type="module" module-name="第六章 支持向量机SVM" />
+    <orderEntry type="module" module-name="第四章 贝叶斯分类器" />
   </component>
 </module>

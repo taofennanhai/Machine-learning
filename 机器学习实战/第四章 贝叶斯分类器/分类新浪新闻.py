@@ -8,6 +8,7 @@ import 贝叶斯分类器 as bayesClassify
 import os
 import jieba
 
+
 def textProcessing(folderPath, testSize = 0.2):
     folderList = os.listdir(folderPath)    # 读取文件价下面的目录
     dataList = []    # 一个类别中的数据
