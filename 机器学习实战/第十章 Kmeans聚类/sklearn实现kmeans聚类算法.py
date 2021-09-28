@@ -11,7 +11,7 @@ print(y)
 plt.scatter(np.transpose(X[:, 0]), np.transpose(X[:, 1]), c=y)
 plt.show()
 
-kmeans = KMeans(algorithm='', n_clusters=2)
+kmeans = KMeans(algorithm='auto', n_clusters=2)
 kmeans.fit(X)
 
 centers = kmeans.cluster_centers_
