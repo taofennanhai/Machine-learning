@@ -33,6 +33,7 @@ if __name__ == '__main__':
 
     print(np.array(dataSet))
 
+
     plt.scatter(np.transpose(np.array(dataSet)[:, 0]), np.transpose(np.array(dataSet)[:, 1]), c='blue')
     plt.scatter(np.transpose(np.array(reconMat)[:, 0]), np.transpose(np.array(reconMat)[:, 1]), c='red', s=20, alpha=0.5)
     plt.show()
