@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/NLP学习.iml" filepath="$PROJECT_DIR$/.idea/NLP学习.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Transformer/.idea/Transformer.iml" filepath="$PROJECT_DIR$/../Transformer/.idea/Transformer.iml" />
     </modules>
   </component>
 </project>
