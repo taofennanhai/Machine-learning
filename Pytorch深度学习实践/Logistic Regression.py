@@ -83,6 +83,7 @@ class LogisticRegressionModel(torch.nn.Module):
         y_pred = torch.sigmoid(self.linear(x_test))
         return y_pred
 
+
 model = LogisticRegressionModel()
 criterion = torch.nn.BCELoss(reduction='mean')    #需要y_hat和y
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01)

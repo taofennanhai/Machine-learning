@@ -14,5 +14,9 @@
     <orderEntry type="module" module-name="第四章 支持向量机SVM" />
     <orderEntry type="module" module-name="第六章 支持向量机SVM" />
     <orderEntry type="module" module-name="第四章 贝叶斯分类器" />
+    <orderEntry type="module" module-name="第七章 Adaboost算法" />
+    <orderEntry type="module" module-name="第十章 Kmeans聚类" />
+    <orderEntry type="module" module-name="第十三章 PCA主成分分析" />
+    <orderEntry type="module" module-name="NLP模型实现" />
   </component>
 </module>

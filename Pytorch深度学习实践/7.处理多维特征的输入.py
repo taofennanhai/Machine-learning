@@ -9,11 +9,11 @@ print(y_data)
 
 class Model(torch.nn.Module):
     def __init__(self):
-        super(Model, self).__init__()    #调用父类的构造函数，
+        super(Model, self).__init__()    # 调用父类的构造函数，
         self.linear1 = torch.nn.Linear(8, 6)    #in_features：前一层网络神经元的个数 out_features： 该网络层神经元的个数以上两者决定了weight的形状[out_features , in_features]
         self.linear2 = torch.nn.Linear(6, 4)
         self.linear3 = torch.nn.Linear(4, 1)
-        self.sigmoid = torch.nn.Sigmoid()    #Sigmoid模块做计算图
+        self.sigmoid = torch.nn.Sigmoid()    # Sigmoid模块做计算图
         self.relu = torch.nn.ReLU()
 
     def forward(self, x):
@@ -24,7 +24,7 @@ class Model(torch.nn.Module):
 
 
 model = Model()
-criterion = torch.nn.BCELoss(reduction='mean')    #需要y_hat和y
+criterion = torch.nn.BCELoss(reduction='mean')    # 需要y_hat和y
 optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
 
 for epoch in range(10000):

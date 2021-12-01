@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../机器学习实战/skip gram模型实现/.idea/NLP模型实现.iml" filepath="$PROJECT_DIR$/../机器学习实战/skip gram模型实现/.idea/NLP模型实现.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Pytorch深度学习实践.iml" filepath="$PROJECT_DIR$/.idea/Pytorch深度学习实践.iml" />
       <module fileurl="file://$PROJECT_DIR$/../机器学习实战/pythonProject/.idea/pythonProject.iml" filepath="$PROJECT_DIR$/../机器学习实战/pythonProject/.idea/pythonProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../机器学习实战/第七章 Adaboost算法/.idea/第七章 Adaboost算法.iml" filepath="$PROJECT_DIR$/../机器学习实战/第七章 Adaboost算法/.idea/第七章 Adaboost算法.iml" />
       <module fileurl="file://$PROJECT_DIR$/../机器学习实战/第三章 决策树生成/.idea/第三章 决策树生成.iml" filepath="$PROJECT_DIR$/../机器学习实战/第三章 决策树生成/.idea/第三章 决策树生成.iml" />
       <module fileurl="file://$PROJECT_DIR$/../机器学习实战/第三章 贝叶斯分类器/.idea/第三章 贝叶斯分类器.iml" filepath="$PROJECT_DIR$/../机器学习实战/第三章 贝叶斯分类器/.idea/第三章 贝叶斯分类器.iml" />
       <module fileurl="file://$PROJECT_DIR$/../机器学习实战/第二章 K邻近算法/.idea/第二章 K邻近算法.iml" filepath="$PROJECT_DIR$/../机器学习实战/第二章 K邻近算法/.idea/第二章 K邻近算法.iml" />
       <module fileurl="file://$PROJECT_DIR$/../机器学习实战/第六章 支持向量机SVM/.idea/第六章 支持向量机SVM.iml" filepath="$PROJECT_DIR$/../机器学习实战/第六章 支持向量机SVM/.idea/第六章 支持向量机SVM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../机器学习实战/第十三章 PCA主成分分析/.idea/第十三章 PCA主成分分析.iml" filepath="$PROJECT_DIR$/../机器学习实战/第十三章 PCA主成分分析/.idea/第十三章 PCA主成分分析.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../机器学习实战/第十章 Kmeans聚类/.idea/第十章 Kmeans聚类.iml" filepath="$PROJECT_DIR$/../机器学习实战/第十章 Kmeans聚类/.idea/第十章 Kmeans聚类.iml" />
       <module fileurl="file://$PROJECT_DIR$/../机器学习实战/支持向量机SVM/.idea/第四章 支持向量机SVM.iml" filepath="$PROJECT_DIR$/../机器学习实战/支持向量机SVM/.idea/第四章 支持向量机SVM.iml" />
       <module fileurl="file://$PROJECT_DIR$/../机器学习实战/第四章 贝叶斯分类器/.idea/第四章 贝叶斯分类器.iml" filepath="$PROJECT_DIR$/../机器学习实战/第四章 贝叶斯分类器/.idea/第四章 贝叶斯分类器.iml" />
     </modules>
