@@ -39,9 +39,9 @@ src_vocab = {'P': 0, 'ich': 1, 'mochte': 2, 'ein': 3, 'bier': 4, 'cola': 5}
 src_idx2word = {i: w for i, w in enumerate(src_vocab)}
 src_vocab_size = len(src_vocab)
 
-tgt_vocab = {'P': 0, 'i': 1, 'want': 2, 'a': 3, 'beer': 4, 'coke': 5, 'S': 6, 'E': 7, '.': 8}
-idx2word = {i: w for i, w in enumerate(tgt_vocab)}
-tgt_vocab_size = len(tgt_vocab)
+target_vocab = {'P': 0, 'i': 1, 'want': 2, 'a': 3, 'beer': 4, 'coke': 5, 'S': 6, 'E': 7, '.': 8}
+idx2word = {i: w for i, w in enumerate(target_vocab)}
+tgt_vocab_size = len(target_vocab)
 
 src_len = 5  # （源句子的长度）enc_input max sequence length
 tgt_len = 6  # dec_input(=dec_output) max sequence length
@@ -63,8 +63,8 @@ def make_data(sentences):
     enc_inputs, dec_inputs, dec_outputs = [], [], []
     for i in range(len(sentences)):
         enc_input = [[src_vocab[n] for n in sentences[i][0].split()]]  # [[1, 2, 3, 4, 0], [1, 2, 3, 5, 0]]
-        dec_input = [[tgt_vocab[n] for n in sentences[i][1].split()]]  # [[6, 1, 2, 3, 4, 8], [6, 1, 2, 3, 5, 8]]
-        dec_output = [[tgt_vocab[n] for n in sentences[i][2].split()]]  # [[1, 2, 3, 4, 8, 7], [1, 2, 3, 5, 8, 7]]
+        dec_input = [[target_vocab[n] for n in sentences[i][1].split()]]  # [[6, 1, 2, 3, 4, 8], [6, 1, 2, 3, 5, 8]]
+        dec_output = [[target_vocab[n] for n in sentences[i][2].split()]]  # [[1, 2, 3, 4, 8, 7], [1, 2, 3, 5, 8, 7]]
 
         enc_inputs.extend(enc_input)
         dec_inputs.extend(dec_input)
@@ -115,6 +115,7 @@ for epoch in range(epochs):
         # outputs: [batch_size * tgt_len, tgt_vocab_size]
         outputs, encoder_self_attentions, decoder_self_attentions, decoder_encoder_attentions = model(encoder_inputs, decoder_inputs)
 
+        # 进行交叉熵计算
         loss = criterion(outputs, decoder_outputs.view(-1))  # dec_outputs.view(-1):[batch_size * tgt_len * tgt_vocab_size]
 
         print('Epoch:', '%04d' % (epoch + 1), 'loss =', '{:.6f}'.format(loss))
@@ -140,8 +141,7 @@ def greedy_decoder(model, enc_input, start_symbol):
     next_symbol = start_symbol
     while not terminal:
         # 预测阶段：dec_input序列会一点点变长（每次添加一个新预测出来的单词）
-        dec_input = torch.cat([dec_input.to(device), torch.tensor([[next_symbol]], dtype=enc_input.dtype).to(device)],
-                              -1)
+        dec_input = torch.cat([dec_input.to(device), torch.tensor([[next_symbol]], dtype=enc_input.dtype).to(device)], -1)
         dec_outputs, _, _ = model.decoder(dec_input, enc_input, enc_outputs)
         projected = model.projection(dec_outputs)
         prob = projected.squeeze(0).max(dim=-1, keepdim=False)[1]
@@ -149,7 +149,7 @@ def greedy_decoder(model, enc_input, start_symbol):
         # 我们在预测是会选择性忽略重复的预测的词，只摘取最新预测的单词拼接到输入序列中
         next_word = prob.data[-1]  # 拿出当前预测的单词(数字)。我们用x'_t对应的输出z_t去预测下一个单词的概率，不用z_1,z_2..z_{t-1}
         next_symbol = next_word
-        if next_symbol == tgt_vocab["E"]:
+        if next_symbol == target_vocab["E"]:
             terminal = True
         # print(next_word)
 
@@ -164,7 +164,7 @@ def greedy_decoder(model, enc_input, start_symbol):
 # 预测阶段
 encoder_inputs, _, _ = next(iter(loader))
 for i in range(len(encoder_inputs)):
-    greedy_dec_predict = greedy_decoder(model, encoder_inputs[i].view(1, -1).to(device), start_symbol=tgt_vocab["S"])    # 开始符号为S
-    print(encoder_inputs[i], '->', greedy_dec_predict.squeeze())
+    greedy_dec_predict = greedy_decoder(model, encoder_inputs[i].view(1, -1).to(device), start_symbol=target_vocab["S"])    # 开始符号为S
+    print(encoder_inputs[i], '->', greedy_dec_predict.squeeze())    # 进行每一句的预测
     print([src_idx2word[t.item()] for t in encoder_inputs[i]], '->',
           [idx2word[n.item()] for n in greedy_dec_predict.squeeze()])
