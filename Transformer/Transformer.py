@@ -33,3 +33,4 @@ class Transformer(nn.Module):
 
         # View把每批句子拉成一条长句子，这样方便进行交叉熵损计算   decoder_logits: [batch_size, tgt_len, tgt_vocab_size] -> [batch_size*tgt_len, tgt_vocab_size]
         return decoder_logits.view(-1, decoder_logits.size(-1)), encoder_self_attentions, decoder_self_attentions, decoder_encoder_attentions
+

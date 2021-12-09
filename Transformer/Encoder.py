@@ -87,7 +87,7 @@ class MultiHeadAttention(nn.Module):
         self.device = device
 
         self.W_Q = nn.Linear(d_model, d_k * n_heads, bias=False)  # q,k必须维度相同，不然无法做点积
-        self.W_K = nn.Linear(d_model, d_k * n_heads, bias=False)  # 这里是多头注意力机制的矩阵，不过拼在一起了
+        self.W_K = nn.Linear(d_model, d_k * n_heads, bias=False)  # 这里是多头注意力机制的矩阵，不过拼在一起了,每个头的维度大小为d_model/n_heads
         self.W_V = nn.Linear(d_model, d_v * n_heads, bias=False)
         self.fc = nn.Linear(n_heads * d_v, d_model, bias=False)   # 把多头计算完的注意力映射回d_model维度
 
