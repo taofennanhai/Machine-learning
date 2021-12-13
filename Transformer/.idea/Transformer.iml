@@ -6,5 +6,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="NLP学习" />
     <orderEntry type="module" module-name="Bert" />
+    <orderEntry type="module" module-name="04数据操作+数据预处理" />
   </component>
 </module>

@@ -51,11 +51,12 @@ class ScaledDotProductAttention(nn.Module):
         Q: [batch_size, n_heads, len_q, d_k]
         K: [batch_size, n_heads, len_k, d_k]
         V: [batch_size, n_heads, len_v(=len_k), d_v]
+                0          1         2           3
+               -4          -3        -2          -1
         attn_mask: [batch_size, n_heads, seq_len, seq_len]
         说明：在encoder-decoder的Attention层中len_q(q1,..qt)和len_k(k1,...km)可能不同
         """
-        # scores : [batch_size, n_heads, len
-        # _q, len_k]
+        # scores : [batch_size, n_heads, len_q, len_k]
         scores = torch.matmul(Q, K.transpose(-1, -2)) / np.sqrt(self.d_k)   # QK矩阵相乘
 
         # mask矩阵填充scores（用-1e9填充scores中与attn_mask中值为1位置相对应的元素）
@@ -106,7 +107,7 @@ class MultiHeadAttention(nn.Module):
         # (B, S, D) -proj-> (B, S, D_new) -split-> (B, S, Head, W) -trans-> (B, Head, S, W)
         #           线性变换               拆成多头
 
-        # Q: [batch_size, n_heads, len_q, d_k]
+        # Q: [batch_size, n_heads, len_q, d_k]    其中QKV都是X改变过来的
         Q = self.W_Q(input_Q).view(batch_size, -1, self.n_heads, self.d_k).transpose(1, 2)
         # K: [batch_size, n_heads, len_k, d_k] # K和V的长度一定相同，维度可以不同
         K = self.W_K(input_K).view(batch_size, -1, self.n_heads, self.d_k).transpose(1, 2)
@@ -132,23 +133,22 @@ class MultiHeadAttention(nn.Module):
 class EncoderLayer(nn.Module):
     def __init__(self):
         super(EncoderLayer, self).__init__()
-        self.enc_self_attn = MultiHeadAttention()
+        self.encoder_self_attention = MultiHeadAttention()
         self.pos_ffn = FeedForwardNet()
 
-    def forward(self, enc_inputs, enc_self_attn_mask):
+    def forward(self, encoder_inputs, encoder_self_attention_mask):
         """E
         enc_inputs: [batch_size, src_len, d_model]
         enc_self_attn_mask: [batch_size, src_len, src_len]  mask矩阵(pad mask or sequence mask)
         """
-        # enc_outputs: [batch_size, src_len, d_model], attn: [batch_size, n_heads, src_len, src_len]
+        # encoder_outputs: [batch_size, src_len, d_model], attention: [batch_size, n_heads, src_len, src_len]
         # 第一个enc_inputs * W_Q = Q
         # 第二个enc_inputs * W_K = K
         # 第三个enc_inputs * W_V = V
-        enc_outputs, attn = self.enc_self_attn(enc_inputs, enc_inputs, enc_inputs,
-                                               enc_self_attn_mask)  # enc_inputs to same Q,K,V（未线性变换前）
-        enc_outputs = self.pos_ffn(enc_outputs)
-        # enc_outputs: [batch_size, src_len, d_model]
-        return enc_outputs, attn
+        encoder_outputs, attention = self.encoder_self_attention(encoder_inputs, encoder_inputs, encoder_inputs, encoder_self_attention_mask)  # enc_inputs to same Q,K,V（未线性变换前）
+        encoder_outputs = self.pos_ffn(encoder_outputs)
+        # encoder_outputs: [batch_size, src_len, d_model]
+        return encoder_outputs, attention
 
 
 class Encoder(nn.Module):
