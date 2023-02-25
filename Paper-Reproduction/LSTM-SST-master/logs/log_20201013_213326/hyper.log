@@ -1,0 +1,1 @@
+{"hyper": {"learnrate": 0.01, "embedding": 200, "dropout": 0.2, "layer": 2}}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="zhouxukun@172.22.22.58:22">
+    <serverData>
+      <paths name="shannon">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/home/zhouxukun/Tree_test" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="zhouxukun@172.22.22.58:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_93" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

@@ -1,0 +1,7 @@
+tqdm==4.50.2
+matplotlib==3.3.2
+fitlog==0.9.13
+torch==1.7.1
+numpy==1.19.2
+torchsummary==1.5.1
+torchsummaryX==1.3.0

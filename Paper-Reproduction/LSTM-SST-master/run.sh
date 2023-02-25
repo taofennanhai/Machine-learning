@@ -1,0 +1,1 @@
+python main.py --learnrate 0.1  --batch 256  --embedding 300  --dropout 0.1 --layer 3 --optim 1 --cuda 2 --epoch 20 --momentum 0.01 --org 0

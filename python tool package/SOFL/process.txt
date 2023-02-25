@@ -1,0 +1,6 @@
+process B(x: int | y: int) z: int
+
+	pre (x > 0) or (y > 0)
+	post (z = x + 1) or (z = y - 1)
+
+end_process

@@ -1,0 +1,1 @@
+{"hyper": {"optim": 1, "learnrate": 0.02, "embedding": 300, "dropout": 0.5, "layer": 3, "epoch": 5, "org": 1, "batch": 300, "cuda": 3, "momentum": 0.999}}

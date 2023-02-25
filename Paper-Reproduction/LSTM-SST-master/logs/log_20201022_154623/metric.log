@@ -1,0 +1,15 @@
+Step:0	{"metric": {"loss": 0.5727511236522457}, "step": 0}
+Step:0	{"metric": {"acc": 0.7762522678619633}, "step": 0}
+Step:0	{"metric": {"test_acc": 0.39509536784741145}, "step": 0}
+Step:1	{"metric": {"loss": 0.41075960343279183}, "step": 1}
+Step:1	{"metric": {"acc": 0.8336660577182641}, "step": 1}
+Step:1	{"metric": {"test_acc": 0.4359673024523161}, "step": 1}
+Step:2	{"metric": {"loss": 0.3542302493789401}, "step": 2}
+Step:2	{"metric": {"acc": 0.8556886453095278}, "step": 2}
+Step:2	{"metric": {"test_acc": 0.4250681198910082}, "step": 2}
+Step:3	{"metric": {"loss": 0.3127443614203602}, "step": 3}
+Step:3	{"metric": {"acc": 0.871621748874701}, "step": 3}
+Step:3	{"metric": {"test_acc": 0.45049954586739327}, "step": 3}
+Step:4	{"metric": {"loss": 0.274980004937654}, "step": 4}
+Step:4	{"metric": {"acc": 0.8867889585726751}, "step": 4}
+Step:4	{"metric": {"test_acc": 0.44141689373297005}, "step": 4}

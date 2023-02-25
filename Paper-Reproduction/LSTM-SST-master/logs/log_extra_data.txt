@@ -1,0 +1,1 @@
+{"log_20201020_191750": {"memo": "Standard"}, "log_20201019_153914": {"meta-git_msg": "none"}}
