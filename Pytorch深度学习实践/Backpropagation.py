@@ -21,9 +21,9 @@ y_data = [2, 4, 6]
 #         l = loss(x, y)
 #         l.backward()
 #         print('\tgrad:', x, y, w.grad.item())
-#         w.data = w.data - 0.01*w.grad.data
+#         w.SecondQuestionData = w.SecondQuestionData - 0.01*w.grad.SecondQuestionData
 #
-#         w.grad.data.zero_()
+#         w.grad.SecondQuestionData.zero_()
 #     print("progress:", epoch, l.item())
 #
 # print('predict (after training)', 4, forward(4).item())
@@ -51,13 +51,13 @@ b.requires_grad = True
 #         l = loss(x, b, y)
 #         l.backward()
 #         print('\tgrad:', x, y, w1.grad.item(), w2.grad.item(), b.grad.item())
-#         w1.data = w1.data - 0.01*w1.grad.data
-#         w2.data = w2.data - 0.01 * w2.grad.data
-#         b.data = b.data - 0.01 * b.grad.data
+#         w1.SecondQuestionData = w1.SecondQuestionData - 0.01*w1.grad.SecondQuestionData
+#         w2.SecondQuestionData = w2.SecondQuestionData - 0.01 * w2.grad.SecondQuestionData
+#         b.SecondQuestionData = b.SecondQuestionData - 0.01 * b.grad.SecondQuestionData
 #
-#         w1.grad.data.zero_()
-#         w2.grad.data.zero_()
-#         b.grad.data.zero_()
+#         w1.grad.SecondQuestionData.zero_()
+#         w2.grad.SecondQuestionData.zero_()
+#         b.grad.SecondQuestionData.zero_()
 #     print("progress:", epoch, l.item())
 #
 # print('predict (after training)', 4, forward(4, 0.16).item())

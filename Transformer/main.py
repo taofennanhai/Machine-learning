@@ -25,7 +25,7 @@ epochs = 100
 # 还有每个字的索引也是我手动硬编码上去的，主要是为了降低代码阅读难度
 # S: Symbol that shows starting of decoding input
 # E: Symbol that shows starting of decoding output
-# P: Symbol that will fill in blank sequence if current batch data size is short than time steps
+# P: Symbol that will fill in blank sequence if current batch SecondQuestionData size is short than time steps
 sentences = [
     # 德语和英语的单词个数不要求相同
     # enc_input                dec_input           dec_output

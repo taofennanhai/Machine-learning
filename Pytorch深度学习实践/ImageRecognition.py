@@ -1,4 +1,6 @@
 import torch
+import torch.nn as nn
+import math
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -68,7 +70,87 @@ class CNN(torch.nn.Module):
         return x
 
 
-model = CNN()
+class MyLSTM(nn.Module):
+
+    def __init__(self, input_size, hidden_size):
+        super(MyLSTM, self).__init__()
+
+        self.input_size = input_size
+        self.hidden_size = hidden_size
+
+        self.U_i = nn.Parameter(torch.Tensor(input_size, hidden_size))    # 输入门参数
+        self.V_i = nn.Parameter(torch.Tensor(hidden_size, hidden_size))
+        self.b_i = nn.Parameter(torch.Tensor(hidden_size))
+
+        self.U_f = nn.Parameter(torch.Tensor(input_size, hidden_size))    # 输入门参数
+        self.V_f = nn.Parameter(torch.Tensor(hidden_size, hidden_size))
+        self.b_f = nn.Parameter(torch.Tensor(hidden_size))
+
+        self.U_o = nn.Parameter(torch.Tensor(input_size, hidden_size))    # 隐藏输出门参数
+        self.V_o = nn.Parameter(torch.Tensor(hidden_size, hidden_size))
+        self.b_o = nn.Parameter(torch.Tensor(hidden_size))
+
+        self.U_c = nn.Parameter(torch.Tensor(input_size, hidden_size))    # 细胞元输出门参数
+        self.V_c = nn.Parameter(torch.Tensor(hidden_size, hidden_size))
+        self.b_c = nn.Parameter(torch.Tensor(hidden_size))
+
+        self.init_weights()    # 初始化这些参数
+
+    def init_weights(self):
+        stdv = 1.0 / math.sqrt(self.hidden_size)
+        for weight in self.parameters():
+            nn.init.uniform_(weight, -stdv, stdv)
+            # weight.SecondQuestionData.uniform_(-stdv, stdv)
+
+    def forward(self, x, init_states=None):
+        batch_size, sequeue_size, input_size = x.size()
+
+        hidden_sequeue = []
+
+        if init_states == None:
+            h_t, c_t = (torch.zeros(batch_size, self.hidden_size).to(x.device), torch.zeros(batch_size, self.hidden_size).to(x.device))
+        else:
+            h_t, c_t = init_states
+
+        for t in range(sequeue_size):    # 取出X_t
+            x_t = x[:, t, :]
+
+            i_t = torch.sigmoid(x_t@self.U_i + h_t@self.V_i + self.b_i)
+            f_t = torch.sigmoid(x_t @ self.U_f + h_t @ self.V_f + self.b_f)
+            o_t = torch.sigmoid(x_t @ self.U_o + h_t @ self.V_o + self.b_o)
+            g_t = torch.tanh(x_t @ self.U_c + h_t @ self.V_c + self.b_c)
+
+            c_t = f_t*c_t + i_t*g_t
+            h_t = o_t*torch.tanh(c_t)
+
+            hidden_sequeue.append(h_t.unsqueeze(0))
+
+        hidden_sequeue = torch.cat(hidden_sequeue, dim=0)
+        hidden_sequeue = hidden_sequeue.transpose(0, 1).contiguous()
+
+        return hidden_sequeue, (h_t, c_t)
+
+
+class LSTM(nn.Module):
+
+    def __init__(self):
+        super(LSTM, self).__init__()
+        self.lstm = MyLSTM(input_size=28, hidden_size=28)
+        # self.lstm = nn.LSTM(input_size=28, hidden_size=28, num_layers=1, bias=True, batch_first=True, bidirectional=False)
+        self.linear = nn.Linear(28, 10)
+
+    def forward(self, x):
+        # 把x从数据（n, 1,28,28）转为 (n, 28, 28)的数据形状
+        batch_size = x.shape[0]
+        x = x.squeeze(1)
+
+        output, (h_n, c_n) = self.lstm(x)
+        prediction = self.linear(h_n)
+
+        return prediction.squeeze(0)
+
+
+model = LSTM()
 criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
 
@@ -104,15 +186,14 @@ def test():
             outputs = model(images)                       # dim = 0，指定的是行，那就是列不变
             _, predicted = torch.max(outputs.data, dim=1)    # dim=1，指定列，也就是行不变，列之间的比较
             total += labels.size(0)
-            print(labels.size(0))
             correct += (predicted == labels).sum().item()
         print('correct rate: ', correct/total)
 
 
 if __name__ == '__main__':
-    print(torch.cuda.is_available())  # 判断是否可以使用gpu计算
-    print(torch.cuda.device_count())  # 显示gpu数量
-    print(torch.cuda.current_device())  # 当前使用gpu的设备号
+    # print(torch.cuda.is_available())  # 判断是否可以使用gpu计算
+    # print(torch.cuda.device_count())  # 显示gpu数量
+    # print(torch.cuda.current_device())  # 当前使用gpu的设备号
 
     for epoch in range(10):
         train(epoch)

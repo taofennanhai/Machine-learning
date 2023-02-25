@@ -27,9 +27,7 @@ def get_attention_pad_mask(seq_q, seq_k):
 
 
 def get_attention_subsequence_mask(seq):
-    """建议打印出来看看是什么的输出（一目了然）
-    seq: [batch_size, tgt_len]
-    """
+
     attention_shape = [seq.size(0), seq.size(1), seq.size(1)]
     # attention_shape: [batch_size, tgt_len, tgt_len]
 
